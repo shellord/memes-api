@@ -1,8 +1,10 @@
 const express = require('express')
+const bodyParser = require('body-parser')
 const { meme } = require('memejs')
 
 const app = express()
 
+app.use(bodyParser.json())
 
 
 app.get("/", function (req, res) {
@@ -14,9 +16,9 @@ app.get("/api", function (req, res) {
 })
 
 app.get("/api/memes/:subreddit", function (req, res) {
-    meme('crappydesign', function(err, data) {
-        if (err) return res.send(err)
-        return res.send(data)
+    meme('crappydesign', function (err, data) {
+        if (err) return res.send(JSON.stringify({ "status": 200, "error": true, "response": err }))
+        return res.send(JSON.stringify({ "status": 200, "error": null, "response": data }))
     })
 })
 
