@@ -16,15 +16,10 @@ app.get("/api", function (req, res) {
 })
 
 app.get("/api/memes/:subreddit", function (req, res) {
-    var times = 10;
-    memes=[{}]
-    for(var i=0; i < times; i++){
-         meme(req.params.subreddit, function (err, data) {
+    meme(req.params.subreddit, function (err, data) {
         if (err) return res.send(JSON.stringify({ "status": 200, "error": true, "response": err }))
-           memes.push(data)
-         })
-    }
-    return res.send(JSON.stringify({ "status": 200, "error": null, "response": memes }))
+        return res.send(JSON.stringify({ "status": 200, "error": null, "response": data }))
+    })
 })
 
 app.listen(process.env.PORT || 3000, () => {
