@@ -3,10 +3,7 @@ const { meme } = require('memejs')
 
 const app = express()
 
-meme(function (err, data) {
-    if (err) return console.error(err)
-    console.log(data)
-})
+
 
 app.get("/", function (req, res) {
     return res.send("Dank Memes API")
@@ -17,6 +14,10 @@ app.get("/api", function (req, res) {
 })
 
 app.get("/api/memes/:subreddit", function (req, res) {
+    meme('crappydesign', function(err, data) {
+        if (err) res.send(err)
+        res.send(data)
+    })
     return res.send("Dank Memes API")
 })
 
