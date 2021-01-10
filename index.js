@@ -16,7 +16,7 @@ app.get("/api", function (req, res) {
 })
 
 app.get("/api/memes/:subreddit", function (req, res) {
-    meme('crappydesign', function (err, data) {
+    meme(req.params.subreddit, function (err, data) {
         if (err) return res.send(JSON.stringify({ "status": 200, "error": true, "response": err }))
         return res.send(JSON.stringify({ "status": 200, "error": null, "response": data }))
     })
