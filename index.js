@@ -15,10 +15,9 @@ app.get("/api", function (req, res) {
 
 app.get("/api/memes/:subreddit", function (req, res) {
     meme('crappydesign', function(err, data) {
-        if (err) res.send(err)
-        res.send(data)
+        if (err) return res.send(err)
+        return res.send(data)
     })
-    return res.send("Dank Memes API")
 })
 
 app.listen(process.env.PORT || 3000, () => {
