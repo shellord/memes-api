@@ -17,7 +17,7 @@ app.get("/api", function (req, res) {
 
 app.get("/api/memes/:subreddit", function (req, res) {
     var times = 10;
-    memes=[]
+    memes=[{}]
     for(var i=0; i < times; i++){
          meme(req.params.subreddit, function (err, data) {
         if (err) return res.send(JSON.stringify({ "status": 200, "error": true, "response": err }))
